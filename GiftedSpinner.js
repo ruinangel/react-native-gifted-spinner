@@ -1,14 +1,46 @@
-import React, { Component } from 'react';
-import { ActivityIndicator } from 'react-native';
+'use strict'
 
-export default class GiftedSpinner extends Component {
+var React = require('react');
+
+var {
+    View,
+    ActivityIndicator,
+    Platform
+    } = require('react-native');
+
+var GiftedSpinner = React.createClass({
+
+  _getSpinner() {
+    if (Platform.OS === 'android') {
+      return (
+          <ActivityIndicator
+      style={{
+        height: 20,
+      }}
+      styleAttr="Inverse"
+      {...this.props}
+    />
+    );
+    } else {
+      return (
+          <ActivityIndicator
+      animating={true}
+      size="small"
+      {...this.props}
+    />
+    );
+    }
+  },
+
   render() {
     return (
-      <ActivityIndicator
-        animating={true}
-        size="small"
-        {...this.props}
-      />
-    );
-  }
-}
+        <View>
+        {this._getSpinner()}
+  </View>
+  );
+  },
+
+});
+
+
+module.exports = GiftedSpinner;
