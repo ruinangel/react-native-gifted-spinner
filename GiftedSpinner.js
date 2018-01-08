@@ -6,8 +6,9 @@ import {
     ActivityIndicator,
     Platform
 } from 'react-native';
+var createReactClass = require('create-react-class');
 
-var GiftedSpinner = React.createClass({
+var GiftedSpinner = createReactClass({
     _getSpinner() {
         if (Platform.OS === 'android') {
             return (
